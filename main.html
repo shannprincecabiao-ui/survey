@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Survey</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#0a0a0a',
+                        cardbg: 'rgba(18, 18, 22, 0.75)',
+                        neonpurple: '#a855f7',
+                        neongreen: '#22c55e',
+                        neoncyan: '#06b6d4'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(168, 85, 247, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+        .glass-panel {
+            background: rgba(18, 18, 22, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(168, 85, 247, 0.1);
+        }
+        .neon-glow:focus {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+            border-color: #06b6d4;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f3f46;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-gray-100 flex items-center justify-center p-4 sm:p-6 md:p-8">
+
+    <div class="w-full max-w-xl mx-auto">
+        
+        <!-- Header / Logo area -->
+        <div class="text-center mb-8 animate-fade-in">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-purple-600 to-cyan-500 p-0.5 mb-4 shadow-lg shadow-purple-500/20">
+                <div class="w-full h-full bg-darkbg rounded-[14px] flex items-center justify-center">
+                    <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                    </svg>
+                </div>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                Student Portal Survey
+            </h1>
+            <p class="text-sm sm:text-base text-gray-400 mt-2">Please fill out the form below with your accurate information.</p>
+        </div>
+
+        <div class="glass-panel rounded-3xl p-6 sm:p-10 relative overflow-hidden">
+            
+            <!-- Decorative ambient light blur inside card -->
+            <div class="absolute -top-24 -right-24 w-48 h-48 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-cyan-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- 
+              ============================================================
+              CHANGE SUBMIT ACTION HERE 
+              ============================================================
+              You can modify the 'action' attribute to point to your backend endpoint 
+              (e.g., action="submit.php" or action="https://api.yourdomain.com/submit")
+              or handle it entirely via JavaScript using the 'onsubmit' event listener below.
+            -->
+            <form id="registrationForm" action="#" method="POST" class="space-y-6 relative z-10">
+                
+                <!-- 1. Full Name -->
+                <div class="space-y-2">
+                    <label for="fullName" class="block text-sm font-medium text-gray-300">
+                        Full Name <span class="text-cyan-400">*</span>
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                        </div>
+                        <input type="text" id="fullName" name="fullName" required
+                            class="w-full pl-12 pr-4 py-3.5 bg-black/40 border border-gray-800 rounded-xl text-gray-100 placeholder-gray-600 focus:outline-none neon-glow transition-all duration-200 text-sm sm:text-base"
+                            placeholder="e.g. Juan Dela Cruz">
+                    </div>
+                </div>
+
+                <!-- 2. Email Address -->
+                <div class="space-y-2">
+                    <label for="email" class="block text-sm font-medium text-gray-300">
+                        Email Address (Gmail preferred) <span class="text-cyan-400">*</span>
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <input type="email" id="email" name="email" required
+                            class="w-full pl-12 pr-4 py-3.5 bg-black/40 border border-gray-800 rounded-xl text-gray-100 placeholder-gray-600 focus:outline-none neon-glow transition-all duration-200 text-sm sm:text-base"
+                            placeholder="e.g. name@gmail.com">
+                    </div>
+                </div>
+
+                <!-- 3. Age or Date of Birth (with toggle) -->
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <label class="block text-sm font-medium text-gray-300">
+                            Age / Date of Birth <span class="text-cyan-400">*</span>
+                        </label>
+                        <button type="button" id="toggleAgeType" class="text-xs text-cyan-400 hover:text-cyan-300 transition-colors underline cursor-pointer">
+                            Switch to Age input
+                        </button>
+                    </div>
+                    
+                    <!-- Date of Birth Input Container -->
+                    <div id="dobContainer" class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <input type="date" id="dobInput" name="dob" required
+                            class="w-full pl-12 pr-4 py-3.5 bg-black/40 border border-gray-800 rounded-xl text-gray-100 focus:outline-none neon-glow transition-all duration-200 text-sm sm:text-base [color-scheme:dark]">
+                    </div>
+
+                    <!-- Age Input Container (Hidden by default) -->
+                    <div id="ageContainer" class="relative hidden">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <input type="number" id="ageInput" name="age" min="1" max="120"
+                            class="w-full pl-12 pr-4 py-3.5 bg-black/40 border border-gray-800 rounded-xl text-gray-100 placeholder-gray-600 focus:outline-none neon-glow transition-all duration-200 text-sm sm:text-base"
+                            placeholder="Enter your age (e.g., 20)">
+                    </div>
+                </div>
+
+                <!-- 4. Gender -->
+                <div class="space-y-2">
+                    <label for="gender" class="block text-sm font-medium text-gray-300">
+                        Gender <span class="text-cyan-400">*</span>
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                            </svg>
+                        </div>
+                        <select id="gender" name="gender" required
+                            class="w-full pl-12 pr-10 py-3.5 bg-black/40 border border-gray-800 rounded-xl text-gray-100 focus:outline-none neon-glow transition-all duration-200 text-sm sm:text-base appearance-none cursor-pointer">
+                            <option value="" disabled selected class="bg-zinc-900 text-gray-500">Select your gender</option>
+                            <option value="Male" class="bg-zinc-900 text-gray-100">Male</option>
+                            <option value="Female" class="bg-zinc-900 text-gray-100">Female</option>
+                            <option value="Non-binary" class="bg-zinc-900 text-gray-100">Non-binary</option>
+                            <option value="Prefer not to say" class="bg-zinc-900 text-gray-100">Prefer not to say</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-gray-500">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Course -->
+                <div class="space-y-2">
+                    <label for="course" class="block text-sm font-medium text-gray-300">
+                        Course / Program <span class="text-cyan-400">*</span>
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                        </div>
+                        <input type="text" id="course" name="course" required
+                            class="w-full pl-12 pr-4 py-3.5 bg-black/40 border border-gray-800 rounded-xl text-gray-100 placeholder-gray-600 focus:outline-none neon-glow transition-all duration-200 text-sm sm:text-base"
+                            placeholder="e.g. Bachelor of Science in Computer Science">
+                    </div>
+                </div>
+
+                <!-- 6. School -->
+                <div class="space-y-2">
+                    <label for="school" class="block text-sm font-medium text-gray-300">
+                        School / Institution <span class="text-cyan-400">*</span>
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        </div>
+                        <input type="text" id="school" name="school" required
+                            class="w-full pl-12 pr-4 py-3.5 bg-black/40 border border-gray-800 rounded-xl text-gray-100 placeholder-gray-600 focus:outline-none neon-glow transition-all duration-200 text-sm sm:text-base"
+                            placeholder="e.g. University of the Philippines">
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" id="submitBtn"
+                        class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 text-white font-semibold shadow-lg shadow-purple-500/25 hover:shadow-cyan-500/40 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 flex items-center justify-center space-x-2 cursor-pointer">
+                        <span>Submit Registration</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Success Overlay State (Hidden Initially) -->
+            <div id="successState" class="hidden absolute inset-0 bg-darkbg/95 backdrop-blur-xl z-20 flex flex-col items-center justify-center p-8 text-center animate-fade-in">
+                <div class="w-20 h-20 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-400 mb-6 shadow-lg shadow-green-500/20">
+                    <svg class="w-10 h-10 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl sm:text-3xl font-bold text-white mb-2">Registration Successful!</h3>
+                <p class="text-gray-400 text-sm sm:text-base max-w-sm mb-8">Thank you for submitting your details. Your response has been securely recorded.</p>
+                <button type="button" id="resetBtn"
+                    class="py-3 px-8 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-gray-200 font-medium transition-all duration-200 border border-zinc-700 cursor-pointer">
+                    Submit Another Response
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Footer note -->
+        <p class="text-center text-xs text-gray-600 mt-6">
+            Protected by secure client validation. All required fields must be completed.
+        </p>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('registrationForm');
+            const successState = document.getElementById('successState');
+            const resetBtn = document.getElementById('resetBtn');
+            const toggleBtn = document.getElementById('toggleAgeType');
+            
+            const dobContainer = document.getElementById('dobContainer');
+            const dobInput = document.getElementById('dobInput');
+            const ageContainer = document.getElementById('ageContainer');
+            const ageInput = document.getElementById('ageInput');
+
+            let isUsingAge = false;
+
+            // Toggle between Date of Birth and direct Age input
+            toggleBtn.addEventListener('click', () => {
+                isUsingAge = !isUsingAge;
+                if (isUsingAge) {
+                    dobContainer.classList.add('hidden');
+                    dobInput.removeAttribute('required');
+                    dobInput.value = '';
+
+                    ageContainer.classList.remove('hidden');
+                    ageInput.setAttribute('required', 'required');
+                    toggleBtn.textContent = 'Switch to Date of Birth';
+                } else {
+                    ageContainer.classList.add('hidden');
+                    ageInput.removeAttribute('required');
+                    ageInput.value = '';
+
+                    dobContainer.classList.remove('hidden');
+                    dobInput.setAttribute('required', 'required');
+                    toggleBtn.textContent = 'Switch to Age input';
+                }
+            });
+
+            // Handle Form Submission with client-side validation check
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Native checkValidity triggers browser tooltips for invalid or empty required fields
+                if (form.checkValidity()) {
+                    // Collect form data if needed for backend handling
+                    const formData = new FormData(form);
+                    const dataObject = Object.fromEntries(formData.entries());
+                    console.log('Submitted Data:', dataObject);
+
+                    // Show success screen with smooth transition
+                    successState.classList.remove('hidden');
+                } else {
+                    form.reportValidity();
+                }
+            });
+
+            // Reset form for another entry
+            resetBtn.addEventListener('click', () => {
+                form.reset();
+                successState.classList.add('hidden');
+                
+                // Reset toggle state back to default (DOB)
+                if (isUsingAge) {
+                    toggleBtn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
