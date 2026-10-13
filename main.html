@@ -138,44 +138,76 @@
     </p>
   </main>
 
-  <script>
-    // Add the hour choices 1 through 24 to both dropdowns.
-    const hourDropdowns = [
-      document.getElementById("socialMediaHours"),
-      document.getElementById("sleepHours")
-    ];
 
-    hourDropdowns.forEach((dropdown) => {
-      for (let hour = 1; hour <= 24; hour++) {
-        const option = document.createElement("option");
-        option.value = String(hour);
-        option.textContent = `${hour} ${hour === 1 ? "hour" : "hours"}`;
-        dropdown.appendChild(option);
-      }
-    });
+<script>
+  // Your Google Apps Script API URL
+  const API_URL = "https://script.google.com/macros/s/AKfycbx7U93hhh8UxMZ0ujioz3qIqQmz-yDFgo64LoHrfZGshEJESoyEdamzh9kkLuwpiwQKUQ/exec";
 
-    const form = document.getElementById("surveyForm");
-    const statusMessage = document.getElementById("statusMessage");
+  // Add hour choices from 1 to 24 to both dropdowns
+  const hourDropdowns = [
+    document.getElementById("socialMediaHours"),
+    document.getElementById("sleepHours")
+  ];
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      if (!form.reportValidity()) return;
+  hourDropdowns.forEach((dropdown) => {
+    for (let hour = 1; hour <= 24; hour++) {
+      const option = document.createElement("option");
+      option.value = String(hour);
+      option.textContent =
+        `${hour} ${hour === 1 ? "hour" : "hours"}`;
+      dropdown.appendChild(option);
+    }
+  });
 
-      const response = {
-        academicLevel: document.getElementById("academicLevel").value,
-        gender: document.getElementById("gender").value,
-        socialMediaHours: Number(document.getElementById("socialMediaHours").value),
-        sleepHours: Number(document.getElementById("sleepHours").value)
-      };
+  const form = document.getElementById("surveyForm");
+  const statusMessage = document.getElementById("statusMessage");
+  const submitButton = form.querySelector('button[type="submit"]');
 
-      // API / Google Sheets connection will be added later.
-      // For now, this only prints the response in the browser console.
-      console.log("Survey response (not saved yet):", response);
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
+    if (!form.reportValidity()) return;
+
+    const response = {
+      academicLevel:
+        document.getElementById("academicLevel").value,
+      gender:
+        document.getElementById("gender").value,
+      socialMediaHours:
+        Number(document.getElementById("socialMediaHours").value),
+      sleepHours:
+        Number(document.getElementById("sleepHours").value)
+    };
+
+    submitButton.disabled = true;
+    submitButton.querySelector("span").textContent = "Submitting...";
+    statusMessage.classList.add("hidden");
+
+    try {
+      await fetch(API_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(response)
+      });
+
+      // The browser cannot verify the API response in no-cors mode.
+      // Redirect after sending the request.
+      window.location.href = "submit.html";
+
+    } catch (error) {
       statusMessage.textContent =
-        "The form is working, but responses are not being saved yet. Connect the API before sharing this survey.";
+        "Unable to submit your response. Please check your internet connection and try again.";
+
       statusMessage.classList.remove("hidden");
-    });
-  </script>
+      submitButton.disabled = false;
+      submitButton.querySelector("span").textContent = "Submit";
+
+      console.error("Survey submission error:", error);
+    }
+  });
+</script>
 </body>
 </html>
