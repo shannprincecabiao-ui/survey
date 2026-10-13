@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050505">
+  <title>Thank You | Student Survey</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            darkbg: "#0a0a0a",
+            neonpurple: "#a855f7",
+            neoncyan: "#06b6d4"
+          }
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #050505;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(168,85,247,.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(6,182,212,.15) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+    .glass-panel {
+      background: rgba(18,18,22,.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 20px 50px rgba(0,0,0,.5), 0 0 30px rgba(168,85,247,.1);
+    }
+    .check-glow {
+      box-shadow: 0 0 35px rgba(34,197,94,.12);
+    }
+    .action-link:focus-visible {
+      outline: 2px solid #06b6d4;
+      outline-offset: 4px;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-gray-100 flex items-center justify-center p-4 sm:p-6">
+  <main class="w-full max-w-xl mx-auto">
+    <section class="glass-panel rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden">
+      <div class="absolute -top-24 -right-24 w-56 h-56 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-56 h-56 bg-cyan-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10">
+        <div class="mx-auto mb-7 w-24 h-24 rounded-full border border-green-400/30 bg-green-400/10 flex items-center justify-center text-green-400 check-glow">
+          <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 12.5l4.5 4.5L19 7"/>
+          </svg>
+        </div>
+
+        <p class="text-xs sm:text-sm uppercase tracking-[0.25em] text-cyan-400 font-semibold mb-3">
+          Survey Completed
+        </p>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+          Thank You!
+        </h1>
+        <p class="mt-5 text-base sm:text-lg leading-relaxed text-gray-300">
+          Your response means a lot to us.
+        </p>
+        <p class="mt-3 text-sm sm:text-base leading-relaxed text-gray-400 max-w-md mx-auto">
+          Thank you for taking the time to complete our survey on social media usage and sleep duration among college students. Your participation is appreciated and will help support our research.
+        </p>
+
+        <div class="mt-8 rounded-2xl border border-white/10 bg-black/30 p-4 sm:p-5 text-left">
+          <div class="flex items-start gap-3">
+            <div class="mt-0.5 text-cyan-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-gray-200">You're all done!</p>
+              <p class="text-sm text-gray-400 mt-1">You may now close this page. Thank you for helping with our research.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="main.html"
+          class="action-link mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 px-6 py-4 font-semibold text-white shadow-lg shadow-purple-500/25 transition-all duration-200 hover:scale-[1.01] hover:shadow-cyan-500/40 active:scale-[0.99]">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11a4 4 0 014 4v1m0 0-4-4m4 4 4-4M7 14l-4 4"/>
+          </svg>
+          <span>Back to Home</span>
+        </a>
+      </div>
+    </section>
+
+    <p class="mt-6 text-center text-xs text-gray-600">
+      The Relationship Between Daily Social Media Consumption and Sleep Duration Among College Students
+    </p>
+  </main>
+</body>
+</html>
